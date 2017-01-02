@@ -33,6 +33,7 @@ or build it yourself
 * `ENABLE_REWRITE`
 * `ENABLE_SSL`
 * `ALLOWOVERRIDE`
+* `REMOTEIP` (set 1 to enable, use this only behind a proxy!)
 
 
 ### You need PHP (PHP-FPM)?, see here: 
