@@ -1,5 +1,5 @@
 #FROM resin/rpi-raspbian:latest
-FROM jsurf/rpi-raspbian:latest
+FROM tobi312/rpi-raspbian-qemu:latest
 
 MAINTAINER Tobias Hargesheimer <docker@ison.ws>
 
