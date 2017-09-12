@@ -1,5 +1,5 @@
-#FROM resin/rpi-raspbian:latest
-FROM jsurf/rpi-raspbian:latest
+#FROM resin/rpi-raspbian:stretch
+FROM jsurf/rpi-raspbian:stretch
 
 MAINTAINER Tobias Hargesheimer <docker@ison.ws>
 
@@ -19,8 +19,9 @@ RUN apt-get update && apt-get install -y \
 	wget \
 	curl \
 	openssl \
-	apache2 apache2-doc \
+	apache2 apache2-doc apache2-utils \
 	libapache2-mod-proxy-html \
+	#libapache2-mod-fcgid \
 	--no-install-recommends && \
 	rm -rf /var/lib/apt/lists/* && \
 	rm /var/www/html/index.html
