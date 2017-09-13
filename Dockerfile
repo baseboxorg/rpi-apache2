@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 	curl \
 	openssl \
 	apache2 apache2-doc apache2-utils \
-	libapache2-mod-proxy-html \
+	#libapache2-mod-proxy-html \
 	#libapache2-mod-fcgid \
 	--no-install-recommends && \
 	rm -rf /var/lib/apt/lists/* && \
