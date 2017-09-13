@@ -21,17 +21,16 @@ if [ ! -z "$ENABLE_PROXY_HTTP" ] || [ ! -z "$ENABLE_PROXY_HTML" ] || [ ! -z "$EN
 		echo ">> enabling FastCGI proxy support"
 		/usr/sbin/a2enmod proxy_fcgi
 		
-		cat > /etc/apache2/conf-available/php5-fpm.conf <<EOF
+		cat > /etc/apache2/conf-available/php-fpm.conf <<EOF
 <IfModule mod_proxy_fcgi.c>
 	<FilesMatch ".+\.ph(p[345]?|t|tml)$">
-		# SetHandler "proxy:unix:/var/run/php5-fpm.sock|fcgi://localhost/"
-		SetHandler proxy:fcgi://phphost:9000
+		SetHandler proxy:fcgi://phpfpm:9000
 	</FilesMatch>
 </IfModule>
 
 EOF
 		
-		/usr/sbin/a2enconf php5-fpm
+		/usr/sbin/a2enconf php-fpm
 		#echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
 	fi
 fi
@@ -50,7 +49,7 @@ if [ ! -z "$ENABLE_SSL" ]; then
 	
 	if [ ! -e "/etc/ssl/private/ssl-cert-snakeoil.key" ] || [ ! -e "/etc/ssl/certs/ssl-cert-snakeoil.pem" ]; then
 		echo ">> generating self signed cert"
-		openssl req -x509 -newkey rsa:4086 -subj "/C=/ST=/L=/O=/CN=localhost" -keyout "/etc/ssl/private/ssl-cert-snakeoil.key" -out "/etc/ssl/certs/ssl-cert-snakeoil.pem" -days 3650 -nodes -sha256
+		openssl req -x509 -newkey rsa:4086 -subj "/C=DE/ST=RLP/L=Mainz/O=Raspberry\ Pi/CN=localhost" -keyout "/etc/ssl/private/ssl-cert-snakeoil.key" -out "/etc/ssl/certs/ssl-cert-snakeoil.pem" -days 3650 -nodes -sha256
 	fi
 fi
 
